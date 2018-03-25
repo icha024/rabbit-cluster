@@ -4,11 +4,4 @@
   roles:
     - erlang
     - geerlingguy.rabbitmq
-    - rabbitmq-cookie
-
-- hosts: rabbitmq-slave
-  roles:
-    - erlang
-    - geerlingguy.rabbitmq
-    - rabbitmq-cookie
-    - rabbitmq-slave
+    - rabbitmq-config
