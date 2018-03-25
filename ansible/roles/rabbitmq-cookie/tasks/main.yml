@@ -1,0 +1,16 @@
+---
+# tasks file for rabbitmq-config
+# - name: Copy RabbitMQ Config
+#   copy:
+#     src: "{{ role_path }}/files/rabbitmq.config"
+#     dest: /etc/rabbitmq/rabbitmq.config
+
+- name: Copy RabbitMQ Erlang Cookie
+  copy:
+    src: "{{ role_path }}/files/erlang.cookie"
+    dest: /var/lib/rabbitmq/.erlang.cookie
+
+- name: Restart RabbitMQ
+  service:
+    name: rabbitmq-server.service
+    state: restarted

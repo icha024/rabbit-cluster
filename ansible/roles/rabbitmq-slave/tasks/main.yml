@@ -1,0 +1,11 @@
+---
+# tasks file for rabbitmq-config
+- name: Copy RabbitMQ Config
+  copy:
+    src: "{{ role_path }}/files/rabbitmq.config"
+    dest: /etc/rabbitmq/rabbitmq.config
+
+- name: Restart RabbitMQ
+  service:
+    name: rabbitmq-server.service
+    state: restarted
