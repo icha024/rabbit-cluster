@@ -363,7 +363,7 @@
    %% to nodes that have just been reset or started for the first time.
    %% Related doc guide: http://www.rabbitmq.com/clustering.html#auto-config
    %%
-    {cluster_nodes, {['{{ rabbit_node1 }}', '{{ rabbit_node2 }}'], disc}},
+    {cluster_nodes, {['{{ rabbit_master }}'], disc}}
 
    %% Interval (in milliseconds) at which we send keepalive messages
    %% to other cluster members. Note that this is not the same thing

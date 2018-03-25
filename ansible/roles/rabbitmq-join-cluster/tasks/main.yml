@@ -1,0 +1,21 @@
+---
+# tasks file for rabbitmq-config
+
+# - name: Copy RabbitMQ Config
+#   template:
+#     src: "{{ role_path }}/templates/rabbitmq-new.config.j2"
+#     dest: /etc/rabbitmq/rabbitmq.config
+
+- name: Restart RabbitMQ
+  service:
+    name: rabbitmq-server.service
+    state: started
+
+- name: Stop RabbitMQ on slave
+  command: rabbitmqctl stop_app
+
+- name: Join Cluster
+  command: rabbitmqctl join_cluster {{ rabbit_master }} 
+
+- name: Start RabbitMQ on slave
+  command: rabbitmqctl start_app

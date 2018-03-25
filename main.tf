@@ -40,6 +40,24 @@ resource "aws_instance" "ian-box2" {
   }
 }
 
+resource "aws_instance" "ian-box3" {
+  ami           = "ami-ee6a718a"
+  instance_type = "t2.micro"
+  key_name      = "${var.key_name}"
+
+  # vpc_security_group_ids = ["sg-07939d6f"]
+  vpc_security_group_ids = "${var.security_group_ids}"
+
+  root_block_device = {
+    delete_on_termination = true
+    volume_size           = 10
+  }
+
+  tags {
+    Name = "ian-centos3"
+  }
+}
+
 # resource "aws_ebs_volume" "ian-storage" {
 #   availability_zone = "us-west-2a"
 #   size              = 10

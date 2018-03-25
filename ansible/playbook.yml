@@ -1,7 +1,11 @@
 ---
 
-- hosts: rabbitmq
+- hosts: rabbitmq, rabbitmq-slave
   roles:
     - erlang
     - geerlingguy.rabbitmq
     - rabbitmq-config
+
+- hosts: rabbitmq-slave
+  roles:
+    - rabbitmq-join-cluster

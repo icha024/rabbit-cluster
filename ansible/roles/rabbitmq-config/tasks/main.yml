@@ -2,19 +2,14 @@
 # tasks file for rabbitmq-config
 
 - name: Copy RabbitMQ Erlang Cookie
-  copy:
-    src: "{{ role_path }}/files/erlang.cookie"
-    dest: /var/lib/rabbitmq/.erlang.cookie
-
-- name: Copy RabbitMQ Config
   template:
-    src: "{{ role_path }}/files/rabbitmq.config.j2"
-    dest: /etc/rabbitmq/rabbitmq.config
-  # copy:
-  #   src: "{{ role_path }}/files/rabbitmq.config"
-  #   dest: /etc/rabbitmq/rabbitmq.config
+    src: "{{ role_path }}/templates/erlang.cookie"
+    dest: /var/lib/rabbitmq/.erlang.cookie
 
 - name: Restart RabbitMQ
   service:
     name: rabbitmq-server.service
     state: restarted
+
+- name: Enable management
+  command: rabbitmq-plugins enable rabbitmq_management
